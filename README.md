@@ -1,1 +1,7 @@
-# parallel-programming
+# Параллельное программирование
+
+В этом репозитории находятся **мои** лабораторные работы по курсу "Параллельное программирование" (ФИИТ, 3 курс).
+
+Посмотреть работы всех участников курса можно в этих репозиториях:
+* Часть 1 - https://github.com/vla5924-practice/parallel-programming-1
+* Часть 1 (отчеты) - https://github.com/vla5924-practice/parallel-programming-1-reports
