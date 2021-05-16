@@ -5,13 +5,43 @@
 \usepackage[english, russian]{babel}
 \usepackage[pdftex]{hyperref}
 \usepackage[14pt]{extsizes}
-\usepackage{listings}
 \usepackage{color}
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{indentfirst}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+
+%"mystyle" code listing set
+\lstset{style=mystyle}
 
 \geometry{a4paper,top=2cm,bottom=3cm,left=2cm,right=1.5cm}
 \setlength{\parskip}{0.5cm}
@@ -85,10 +115,9 @@
 % Введение
 \section*{Введение}
 \addcontentsline{toc}{section}{Введение}
-Как правило, как людям, так и компьютерам удобнее работать с такими наборами или списками данных, которые упорядочены по определенному свойству. Одним из способов упорядочения множества данных является сортировка.
-\par Но обычно сортировки представляют собой алгоритмы, требующие многократных обходов сортируемого диапазона. Отсюда следует, что чем больше количество объектов, которые необходимо отсортировать, тем больше времени требуется для сортировки. Уменьшить затраты времени на сортировку может помочь распараллеливание реализации алгоритма с помощью его запуска на нескольких процессорах вычислительного оборудования.
-\par Таким образом, мы можем разделить исходный набор данных на части, для каждой вычислительной единицы поровну, отсортировать их параллельно, а затем объединить, чтобы получить набор с начальным размером. Эффективным подходом для такого слияния в данном случае может служить применение алгоритма четно-нечетного слияния Бэтчера.
-\par Итак, в данной лабораторной работе будет реализован один из алгоритмов сортировок - сортировка Шелла, а также алгоритм четно-нечетного слияния Бэтчера.
+Интеграл — одно из важнейших понятий математического анализа, которое возникает при решении задач о нахождении площади под кривой, пройденного пути при неравномерном движении, массы неоднородного тела и других свойств математических и физических объектов. Но это недостаточно для полного описания и изучения некоторых объектов и их состояний, таких как объем тела, площадь произвольной поверхности, масса физического тела, координаты центра масс однородного тела, количество вещества. В этом случае на помощь приходят многомерные интегралы от функций с более чем одной переменной.
+\par Для вычисления интегралов с помощью компьютера широко применяются методы численного интегрирования. Численное интегрирование — приближенное вычисление значения определенного интеграла.
+\par Итак, в данной лабораторной работе будет реализован один из алгоритмов численного многомерного интегрирования с использованием многошаговой схемы - метод Симпсона.
 \newpage
 
 % Постановка задачи
@@ -222,7 +251,7 @@ double SimpsonMethod::parallel(
 \addcontentsline{toc}{section}{Приложение}
 В этом разделе находится листинг всего кода, написанного в рамках лабораторной работы.
 \par 1. Библиотека с последовательной реализацией. Файл: simpson\_method.h
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #ifndef MODULES_TASK_1_VLASOV_M_SIMPSON_METHOD_SIMPSON_METHOD_H_
@@ -244,7 +273,7 @@ double integrate(const std::function<double(const std::vector<double>&)>& func,
 
 \par 2. Библиотека с последовательной реализацией. Файл: simpson\_method.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include "../../../modules/task_1/vlasov_m_simpson_method/simpson_method.h"
@@ -295,7 +324,7 @@ double SimpsonMethod::integrate(
 
 \par 3. Библиотека с последовательной реализацией. Файл: main.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include <gtest/gtest.h>
@@ -365,7 +394,7 @@ int main(int argc, char** argv) {
 
 \par 4. Библиотека с реализацией на OpenMP. Файл: simpson\_method.h
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #ifndef MODULES_TASK_2_VLASOV_M_SIMPSON_METHOD_SIMPSON_METHOD_H_
@@ -391,7 +420,7 @@ double parallel(const std::function<double(const std::vector<double>&)>& func,
 
 \par 5. Библиотека с реализацией на OpenMP. Файл: simpson\_method.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include "../../../modules/task_2/vlasov_m_simpson_method/simpson_method.h"
@@ -500,7 +529,7 @@ double SimpsonMethod::parallel(
 
 \par 6. Библиотека с реализацией на OpenMP. Файл: main.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include <gtest/gtest.h>
@@ -593,7 +622,7 @@ int main(int argc, char** argv) {
 
 \par 7. Библиотека с реализацией на oneTBB. Файл: simpson\_method.h
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #ifndef MODULES_TASK_3_VLASOV_M_SIMPSON_METHOD_SIMPSON_METHOD_H_
@@ -619,7 +648,7 @@ double parallel(const std::function<double(const std::vector<double>&)>& func,
 
 \par 8. Библиотека с реализацией на oneTBB. Файл: simpson\_method.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include "../../../modules/task_3/vlasov_m_simpson_method/simpson_method.h"
@@ -720,7 +749,7 @@ double SimpsonMethod::parallel(
 
 \par 9. Библиотека с реализацией на oneTBB. Файл: main.cpp
 
-\begin{lstlisting}
+\begin{lstlisting}[language=C++]
 // Copyright 2021 Vlasov Maksim
 
 #include <gtest/gtest.h>
